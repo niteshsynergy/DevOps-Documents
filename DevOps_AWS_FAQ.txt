@@ -1,0 +1,268 @@
+Core AWS Concepts
+What is AWS Cloud?
+Amazon Web Services (AWS) is a cloud computing platform providing on-demand infrastructure, platform, and software services via the internet.
+
+What is IAAS, PAAS, SAAS?
+
+IaaS: Infrastructure as a Service (e.g., EC2)
+
+PaaS: Platform as a Service (e.g., Elastic Beanstalk)
+
+SaaS: Software as a Service (e.g., Gmail, Salesforce)
+
+EC2 and Compute
+While creating new EC2 instance, need to execute some scripts, called as boot strapping? How you will do?
+Use User Data field in EC2 instance creation to run shell scripts or cloud-init directives.
+
+What is User Data in AWS?
+It's a script provided during EC2 launch that runs automatically at the first boot of the instance.
+
+What is AMI?
+Amazon Machine Image – a pre-configured template containing OS and software to launch EC2 instances.
+
+What is Secret key and access key?
+Credentials used by AWS SDK/CLI to programmatically access AWS resources.
+
+What is the use of Security Group?
+Acts as a virtual firewall for EC2 instances to control inbound/outbound traffic.
+
+What are the different services you are using in AWS?
+EC2, S3, RDS, IAM, VPC, Lambda, CloudWatch, SNS, SQS, etc.
+
+What exactly EC2 does in AWS?
+Provides resizable compute capacity (virtual servers) in the cloud.
+
+Have you ever worked on AWS CLI?
+Yes, for tasks like EC2 management, S3 uploads, and automations via shell scripts.
+
+Scalability & Storage
+Difference Between Scalability and Elasticity?
+
+Scalability: Increasing resources to meet demand over time.
+
+Elasticity: Automatic resource adjustment in real-time based on demand.
+
+What is EBS?
+Elastic Block Store – durable, block-level storage for EC2.
+
+Can we mount 1 EBS to multiple EC2 instances?
+No (except for EBS Multi-Attach with io1/io2 volumes and certain OS setups).
+
+What is Volume and Snapshot in EBS?
+
+Volume: A virtual hard drive.
+
+Snapshot: Backup of the EBS volume (stored in S3 internally).
+
+Can we attach EBS to EC2 in different AZs?
+No, EBS volumes are AZ-specific.
+
+What is EFS?
+Elastic File System – shared file storage for Linux EC2, mountable across AZs.
+
+Purpose and use of S3?
+Object storage for any amount of data, ideal for backups, media, logs, etc.
+
+File size limit in S3?
+Single object: 5 TB, PUT upload limit: 5 GB, use multipart upload for larger files.
+
+Networking & Routing
+What is Route53?
+AWS DNS web service – handles domain registration, routing, and health checks.
+
+Difference between private and public subnet?
+
+Public: Has route to internet via Internet Gateway.
+
+Private: No direct internet access.
+
+How to access INTERNET on private subnet?
+Use a NAT Gateway or NAT Instance in public subnet.
+
+What is NAT instance/NAT Gateway?
+Allows instances in private subnet to access the internet securely.
+
+Components of VPC?
+Subnet, Route Table, Internet Gateway, NAT Gateway, NACL, Security Groups, VPC Peering, etc.
+
+Storage Variants & Lifecycle
+Types of storage in AWS?
+
+S3 (object)
+
+EBS (block)
+
+EFS (file)
+
+FSx
+
+Glacier (archival)
+
+Difference between S3 & Glacier?
+
+S3: Fast access, frequently accessed data.
+
+Glacier: Long-term archiving, slower access.
+
+S3 Storage Classes?
+Standard, IA, One Zone-IA, Intelligent-Tiering, Glacier, Glacier Deep Archive.
+
+What are Glacier and Snowball?
+
+Glacier: Archival storage.
+
+Snowball: Physical data transfer device for bulk data to/from AWS.
+
+What is Auto scaling?
+Automatically increases/decreases EC2 instances based on load or schedule.
+
+Global Infrastructure & Monitoring
+What is Region & Availability Zone?
+
+Region: Geographic area (e.g., ap-south-1)
+
+AZ: Isolated data centers within a region.
+
+What is CloudWatch?
+Monitoring and observability service for logs, metrics, and alarms.
+
+Difference between NACL and Security Group?
+
+NACL: Stateless, applies to subnet.
+
+Security Group: Stateful, applies to instance.
+
+S3 lifecycle?
+Rules to transition data between storage classes or delete after a set time.
+
+Static or Elastic IP?
+Static IP address allocated to your account; Elastic IPs can be attached to EC2 instances.
+
+Access & Identity
+How to connect to Windows instances?
+RDP with username/password decrypted using .pem file.
+
+Difference between EBS, S3, and EFS?
+
+EBS: Block storage for EC2
+
+S3: Object storage
+
+EFS: Shared file storage
+
+If you lost the .pem file then how will you connect to EC2?
+Stop instance → Detach volume → Attach to another EC2 → Add new key → Reattach.
+
+What is IAM?
+Identity and Access Management – manage users, roles, permissions.
+
+How to attach policy for IAM users?
+Via Groups (recommended) or directly to users.
+
+Types of Load Balancers?
+
+ALB (Application)
+
+NLB (Network)
+
+CLB (Classic – legacy)
+
+Can ELB route across regions?
+No. Use Route53 + Global Accelerator to route between regions.
+
+Advanced & Serverless
+Types of EBS volumes?
+
+gp3, gp2 (General Purpose SSD)
+
+io1, io2 (Provisioned IOPS SSD)
+
+st1 (Throughput HDD)
+
+sc1 (Cold HDD)
+
+What is Elastic Beanstalk?
+PaaS to deploy/manage apps (Java, Python, etc.) with minimal infrastructure handling.
+
+What is VPC peering and how to do it?
+Connect two VPCs privately. Create peering connection → Accept → Add route.
+
+What is Serverless Computing in AWS?
+Run code without managing servers (e.g., AWS Lambda + API Gateway).
+
+Protocols Elastic Load Balancer supports?
+HTTP, HTTPS, TCP, TLS, UDP (depends on ALB/NLB type).
+
+Databases & Developer Tools
+What is RDS in AWS?
+Managed relational database service (e.g., MySQL, PostgreSQL, Oracle).
+
+What is DynamoDB and When to use it?
+Managed NoSQL DB for high-scale apps needing millisecond latency.
+
+Protocols and Port Numbers?
+
+HTTP: 80
+
+HTTPS: 443
+
+SSH: 22
+
+RDP: 3389
+
+MySQL: 3306
+
+PostgreSQL: 5432
+
+What is Pre-Signed URL in S3?
+A URL that grants temporary access to a private object.
+
+How to work with Docker Containers in AWS?
+Use ECS, Fargate, or EKS for containerized workloads.
+
+Miscellaneous
+How many AWS regions available in India?
+Currently 3:
+
+ap-south-1 (Mumbai)
+
+ap-south-2 (Hyderabad)
+
+ap-south-3 (Pune)
+
+How to install Java in EC2 machine?
+
+bash
+Copy
+Edit
+sudo yum install java-1.8.0-openjdk
+What is Key Pair in AWS?
+SSH credentials for logging into EC2 securely.
+
+How to connect with EC2 using Putty?
+Convert .pem to .ppk using PuTTYgen, then connect via PuTTY.
+
+How many buckets in S3 by default?
+100 per AWS account (can be increased via request).
+
+What is SNS and how to use it?
+Simple Notification Service – publish-subscribe messaging (email, SMS, Lambda).
+
+Difference between Horizontal and Vertical Scaling?
+
+Horizontal: Add more instances.
+
+Vertical: Increase instance size/resources.
+
+DB Engines supported by RDS?
+MySQL, PostgreSQL, Oracle, SQL Server, MariaDB, Amazon Aurora.
+
+Root user vs IAM user?
+
+Root: Full control, use only for setup.
+
+IAM: Controlled access, use for daily ops.
+
+Why create groups in IAM?
+Easier permission management across multiple users.
+
